@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue mixins</title>
+</head>
+
+<body>
+    <div id="app">
+        <component-one />
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+
+    <script>
+        var baseMixin = {
+            data() {
+                return {
+                    text: 'default text'
+                };
+            },
+            mounted() {
+                this.log(`My text when Created: ${this.text}`);
+            },
+            methods: {
+                log: function(...params) {
+                    console.log(...params);
+                }
+            },
+            template: `
+<div>
+  <h1>{{text}}</h1>
+</div>
+`
+        }
+
+        Vue.component('component-one', {
+            mixins: [baseMixin]
+        })
+
+        new Vue({
+            el: '#app',
+
+        })
+    </script>
+</body>
+
+</html>

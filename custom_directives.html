@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue custom directives</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <h1 v-float-right>{{welcome}}</h1> -->
+        <!-- <component-one/> {{welcome}} -->
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+
+    <script>
+        Vue.directive('float', {
+            inserted(el, binding) {
+
+                if (binding.modifiers.right) {
+                    el.style.float = 'right'
+
+                } else
+                    el.style.float = 'left'
+
+                if (binding.value) {
+                    if (binding.modifiers.right)
+                        el.style.marginRight = `${binding.value}px`;
+                    else
+                        el.style.marginLeft = `${binding.value}px`;
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                welcome: 'Hello World'
+            },
+            template: `
+                      <h1 v-float.right="400">{{welcome}}</h1>
+              `
+        })
+    </script>
+</body>
+
+</html>
