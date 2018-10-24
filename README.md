@@ -1,4 +1,4 @@
-"# vue_mixins_custom_directives" 
+# vue_mixins_custom_directives
 
 ### Getting started
 
